@@ -11,11 +11,32 @@
     <title>Implementing QRCoder in my own stuff</title>
 
     <script>
-        function printImg(source) {
-            var win = window.open('');
-            win.document.write('<img src="' + source + '" onload="window.print();window.close()" />');
-            win.focus();
+        function testFunction() {
+            alert("Functioning");
         }
+    </script>
+    <script>
+        function printImg() {
+            //var baseString = document.getElementById("baseString");
+            var image = new Image();
+            image.src = document.getElementById(currentQR).src;
+            //image.src = "data:image/png;base64,{0}" + baseString;
+            var win = window.open();
+            win.document.write(image.outerHTML);
+            win.document.write("<h1>" + image + "</h1>")
+            //win.document.write('<img src="'+  + '"/>')
+            win.focus();
+            win.print();
+            win.close();
+        }
+        function printTest() {
+            var win = window.open();
+            win.document.write('<h1>Test</h1>');
+            win.focus();
+            win.print();
+            win.close();
+        }
+
     </script>
 </head>
 <body>
@@ -34,11 +55,18 @@
         if (Model != null)
         {
             <h3>QR Code Successfully Generated</h3>
-            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" />
+
+            <img id="currentQR" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" />
+            <button onclick="printImg()">Print button</button>
             <div>
-                <a href="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" download="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))">Download</a>
-                <a href="javascript:window.print()">Print</a>
-                <a href="javascript:window.open(@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model)),'Image')">Open a window!</a>
+                <a href="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))" download="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model))">Download |</a>
+                <a href="javascript:window.print()">Print |</a>
+                <a href="javascript:window.open()">Open a window</a>
+            </div>
+            <div>
+                <p id="baseString">@Convert.ToBase64String(Model)</p>
+                <button onclick="printTest()">Test function</button>
+                <button onclick="printImg()">Print button</button>
             </div>
         }
     }
