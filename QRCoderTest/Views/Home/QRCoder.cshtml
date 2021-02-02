@@ -9,12 +9,13 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Implementing QRCoder in my own stuff</title>
-
+    @*----------------------Test Function-------------------------------------*@
     <script>
         function testFunction() {
             alert("Functioning");
         }
     </script>
+    @*-----------------------------Printing functions-------------------------------*@
     <script>
         function printImg() {
             //var baseString = document.getElementById("baseString");
@@ -43,6 +44,7 @@
     <div>
         <h1>QR Code Testing! Fun stuff!</h1>
     </div>
+    @*-----------------------input form---------------------------*@
     <div>
         @using (Html.BeginForm(null, null, FormMethod.Post))
         {
@@ -51,6 +53,7 @@
             <button>Submit</button>
         }
     </div>
+    @*------------------------------A nightmare of buttons------------------------------------------*@
     @{
         if (Model != null)
         {
