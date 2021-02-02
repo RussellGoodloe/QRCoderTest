@@ -19,16 +19,19 @@
     <script>
         function printImg() {
             //var baseString = document.getElementById("baseString");
-            var image = new Image();
-            image.src = document.getElementById(currentQR).src;
-            //image.src = "data:image/png;base64,{0}" + baseString;
+            var image = getImage();
             var win = window.open();
             win.document.write(image.outerHTML);
-            win.document.write("<h1>" + image + "</h1>")
+            win.document.write('<img src = "../Views/Home/bird spotting.jpg"/>');
+            //win.document.write('<p><img src = /bird spotting.jpeg')
             //win.document.write('<img src="'+  + '"/>')
             win.focus();
-            win.print();
+            setTimeout(win.print(),2000);
             win.close();
+        }
+        function getImage() {
+            var image = "../Views/Home/bird spotting.jpg";
+            return image;
         }
         function printTest() {
             var win = window.open();
@@ -70,6 +73,9 @@
                 <p id="baseString">@Convert.ToBase64String(Model)</p>
                 <button onclick="printTest()">Test function</button>
                 <button onclick="printImg()">Print button</button>
+            </div>
+            <div>
+                <img src="../Views/Home/bird spotting.jpg" />
             </div>
         }
     }
